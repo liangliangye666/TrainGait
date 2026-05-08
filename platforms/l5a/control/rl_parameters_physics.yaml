@@ -1,0 +1,56 @@
+control:
+  jump_time_window: 129
+
+  pd_controller:
+    # kp: [15.0, 25.0, 0.0, 15.0, 25.0, 0.0] # 轮子速度反馈可用参数
+    # kd: [1.3, 2.5, 0.5, 1.3, 2.5, 0.5]
+    kp: [40, 40, 80, 0, 40, 40, 80, 0]
+    kd: [2, 2, 2, 1.5, 2, 2, 2, 1.5]
+    # kp: [8.0, 30.0, 0.0, 8.0, 30.0, 0.0] 轮子速度反馈可用参数
+    # kd: [0.15, 1.5, 0.6, 0.15, 1.5, 0.6]
+
+    # kp: [10.0, 30.0, 0.0, 10.0, 30.0, 0.0]
+    # kd: [0.08, 0.1, 0.6, 0.08, 0.1, 0.6]
+    
+  pos_fb_controller:
+    # kp: [15.0, 20.0, 0.0, 15.0, 20.0, 0.0]
+    # kd: [1.5, 2, 1.0, 1.5, 2, 1.0]
+    kp: [20.0, 20.0, 30.0, 0.0, 20.0, 20.0, 30.0, 0.0]
+    kd: [2.0, 2.0, 3, 1.0, 2.0, 2.0, 3, 1.0]
+  action_scales:
+    # 位置动作的缩放系数
+    pos: 0.25
+    # 速度动作的缩放系数
+    vel: 0.5
+
+  decimation: 2
+
+  EDamping:
+    edamp_hip: 2.0
+    edamp_knee: 2.0
+    edamp_wheel: 2.0
+
+obs_scales:
+  lin_vel: 2.0
+  ang_vel: 0.25
+  dof_pos: 1.0
+  dof_vel: 0.05
+  quat: 1.0
+  height_measurements: 12.0
+
+clip_obs: 100.0
+clip_actions: 100.0
+
+# deg
+# default_pos: [ 0.3491, 1.8799, 0.0,  0.3491, 1.8799, 0.0]#zhanli
+# default_pos: [ -0.349, 0.542, 0.0,  -0.349, 0.542, 0.0]
+default_pos: [0, 0.261799, -0.508606, 0.0, 0, 0.261799, -0.508606, 0.0]
+
+#速度与角速度补偿
+lin_vel_com: 0.0  #-0.08
+omega_com: 0.0    #0.02
+
+model:
+  estimator: "estimator.pt"
+  controller: "policy_1.pt"
+  scan_encoder: "724-02-60000-scan_hist_encoder_jit.pt"
