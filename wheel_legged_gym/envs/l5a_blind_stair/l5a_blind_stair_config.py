@@ -6,7 +6,9 @@ from wheel_legged_gym.envs.l5a_step.l5a_step_config import (
 
 class L5A_BLIND_STAIR_Cfg(L5A_STEP_Cfg):
     class env(L5A_STEP_Cfg.env):
-        num_envs = 4096
+        # One robot per generated 8m x 8m stair pit. 16x16 keeps the mesh
+        # manageable while still supporting many parallel samples.
+        num_envs = 256
         episode_length_s = 20
         fail_to_terminal_time_s = 0.4
 
@@ -19,10 +21,10 @@ class L5A_BLIND_STAIR_Cfg(L5A_STEP_Cfg):
 
         terrain_length = 8.0
         terrain_width = 8.0
-        num_rows = 1
-        num_cols = 1
+        num_rows = 16
+        num_cols = 16
         border_size = 1.0
-        horizontal_scale = 0.025
+        horizontal_scale = 0.05
         vertical_scale = 0.005
         slope_treshold = 0.75
 
